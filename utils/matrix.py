@@ -18,7 +18,7 @@ class Matrix(object):
     def dot(self, other):
         # join by columns and sum the corresponding eles
         return Matrix(self.matrix.join(other.matrix).map(lambda (k, v): v). \
-                      mapPartitions(matrixsum_iterator_other).sum())
+                      mapPartitions(other_iterator).sum())
 
     def take(self, rows):
         return self.matrix.matrix.take(rows)

@@ -26,6 +26,6 @@ def extract(row):
     return [ele[2] for ele in row]
 
 
-def matrixsum_iterator_other(iterator):
-    yield sum(np.outer(x, y) for x, y in iterator)
+def other_iterator(itr):
+    yield sum(np.outer(x, y) for x, y in itr)
 
