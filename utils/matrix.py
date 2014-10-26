@@ -1,11 +1,18 @@
 __author__ = 'msingh'
 
 from utils import *
-
+from basic import *
+from rand_solvers.projections import *
 
 class Matrix(object):
     def __init__(self, rdd):
         self.matrix = rdd
+        self.m, self.n = self.get_dimensions()
+
+    def get_dimensions(self):
+        m = self.matrix.count()
+        n = len(self.matrix.first())
+        return m, n
 
     def transpose(self):
         rows_each_part = self.matrix.mapPartitions(lambda x: num_rows_each_partition(x)).collect()
@@ -29,3 +36,6 @@ class Matrix(object):
 
     def collect(self):
         return self.matrix.collect()
+
+    def get_rdd(self):
+      return self.matrix
