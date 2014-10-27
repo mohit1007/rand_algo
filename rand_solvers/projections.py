@@ -8,7 +8,6 @@ class Projections(object):
         self.sc = sc
 
     def SpaFJLT(self, m, c):
-        #A is an RDD
         PiA = self.matrix.matrix.flatMap(lambda line: mapSFJLT(line, m, c)).reduceByKey(add).collect()
         #print PiA
         projection = np.array([item[1] for item in PiA])

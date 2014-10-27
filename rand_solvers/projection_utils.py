@@ -7,7 +7,6 @@ def mapSFJLT(line, m, c):
     for i in range(c):
         coin = np.random.rand()
         a = -1 if coin < 0.5 else 1
-    
+
         tmp.append((rt[i], a*vec/np.sqrt(c)))
-        #print " temp is ", tmp
     return tmp
