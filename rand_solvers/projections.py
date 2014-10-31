@@ -13,7 +13,7 @@ class Projections(object):
 
     def __validate(self):
         if self.method not in Projections.METHODS:
-            raise NotImplementedError("method not yet implemented")
+            raise NotImplementedError("%s method not yet implemented" % self.method)
         if not self.c:
             raise ValueError("'c' param is missing")
         if not self.k:
