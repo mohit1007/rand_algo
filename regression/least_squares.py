@@ -17,7 +17,7 @@ class RandLeastSquares:
         self.projection = Projections(**kwargs)
         self.cost = []
 
-    def fit(self, A, b, debug=True):
+    def fit(self, A, b):
 
         if self.technique == 'projection':
             x = self.projection.execute(self.matrix_Ab, 'solve')
@@ -33,20 +33,18 @@ class RandLeastSquares:
 
         for i in xrange(self.k):
             cost = npl.norm(np.dot(A, x[i])-b)
+            self.cost.append(cost)
+            """
             if debug:
                 x_opt, f_opt = self.__ideal_cost(A, b)
-                logger.info(npl.norm(np.array(x[i])-x_opt)/npl.norm(x_opt))
+                logger.info("scaled weights error " + str(npl.norm(np.array(x[i])-x_opt)/npl.norm(x_opt)))
                 print npl.norm(np.array(x[i])-x_opt)/npl.norm(x_opt)
-                logger.info(np.abs(f_opt-cost)/f_opt)
+                logger.info("scaled cost error "+ str(np.abs(f_opt-cost)/f_opt))
                 print np.abs(f_opt-cost)/f_opt
 
             self.cost.append(cost)
+            """
 
         return x, cost
-
-    def __ideal_cost(self, A, b):
-        x_opt = npl.lstsq(A, b)[0]
-        f_opt = npl.norm(np.dot(A, x_opt)-b)
-        return x_opt, f_opt
 
 
